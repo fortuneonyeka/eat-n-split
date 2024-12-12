@@ -15,15 +15,17 @@ function App() {
     <div className="app">
       <div className="sidebar">
         <FriendsList />
+        {isAddingFriend && <FormAddFriend />}
+        <Button onClick={handleToggleAddFriend}>{isAddingFriend ? "Close" : "Add Friend"}</Button>
         
-        {isAddingFriend ? (
+        {/* {isAddingFriend ? (
           <>
             <FormAddFriend />
             <Button onClick={handleToggleAddFriend}>Close</Button>
           </>
         ) : (
           <Button onClick={handleToggleAddFriend}>Add Friend</Button>
-        )}
+        )} */}
       </div>
       <FormSplitBill />
     </div>
