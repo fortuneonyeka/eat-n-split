@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../buttons/Button";
 
-const FormAddFriend = ({handleAddFriend, handleCloseForm}) => {
+const FormAddFriend = ({ handleAddFriend }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48");
 
@@ -9,18 +9,17 @@ const FormAddFriend = ({handleAddFriend, handleCloseForm}) => {
     e.preventDefault();
     if (!name || !image) return;
 
-    const id = crypto.randomUUID()
+    const id = crypto.randomUUID();
     const newFriend = {
       name,
       id,
       image: `${image}?=${id}`,
       balance: 0,
     };
-    handleAddFriend(newFriend)
+    handleAddFriend(newFriend);
     // console.log(newFriend);
-    setName("")
-    setImage("https://i.pravatar.cc/48")
-    handleCloseForm()
+    setName("");
+    setImage("https://i.pravatar.cc/48");
   };
 
   return (
