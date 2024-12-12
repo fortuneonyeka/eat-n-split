@@ -16,13 +16,18 @@ function App() {
 
   const handleToggleAddFriend = () => {
     setIsAddingFriend((prev) => !prev);
+    
   };
+
+  const handleCloseForm = () => {
+    setIsAddingFriend(false)
+  }
 
   return (
     <div className="app">
       <div className="sidebar">
         <FriendsList friends={friends}/>
-        {isAddingFriend && <FormAddFriend handleAddFriend={handleAddFriend}/>}
+        {isAddingFriend && <FormAddFriend handleAddFriend={handleAddFriend} handleCloseForm={handleCloseForm}/>}
         <Button onClick={handleToggleAddFriend}>{isAddingFriend ? "Close" : "Add Friend"}</Button>
 
         {/* {isAddingFriend ? (

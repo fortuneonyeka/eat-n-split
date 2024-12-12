@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../buttons/Button";
 
-const FormAddFriend = ({handleAddFriend}) => {
+const FormAddFriend = ({handleAddFriend, handleCloseForm}) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48");
 
@@ -20,6 +20,7 @@ const FormAddFriend = ({handleAddFriend}) => {
     // console.log(newFriend);
     setName("")
     setImage("https://i.pravatar.cc/48")
+    handleCloseForm()
   };
 
   return (
