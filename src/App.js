@@ -3,30 +3,41 @@ import Button from "./components/buttons/Button";
 import FormAddFriend from "./components/forms/FormAddFriend";
 import FriendsList from "./components/FriendsList";
 import FormSplitBill from "./components/forms/FormSplitBill";
-import {initialFriends} from "./data"
-
+import { initialFriends } from "./data";
 
 function App() {
-  const [friends, setFriends] = useState(initialFriends)
+  const [friends, setFriends] = useState(initialFriends);
   const [isAddingFriend, setIsAddingFriend] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
-  const handleAddFriend  = (friend) => {
-    setFriends(friends => [...friends, friend])
-    setIsAddingFriend(false)
-  }
+  const handleAddFriend = (friend) => {
+    setFriends((friends) => [...friends, friend]);
+    setIsAddingFriend(false);
+  };
 
   const handleToggleAddFriend = () => {
     setIsAddingFriend((prev) => !prev);
-    
+    setSelectedFriend(null)
   };
-
+  const handleSelectedFriend = (friend) => {
+    setSelectedFriend((curr) =>
+       curr?.id === friend.id ? null : friend
+    );
+    setIsAddingFriend(false)
+  };
 
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList friends={friends}/>
+        <FriendsList
+          friends={friends}
+          handleSelectedFriend={handleSelectedFriend}
+          selectedFriend={selectedFriend}
+        />
         {isAddingFriend && <FormAddFriend handleAddFriend={handleAddFriend} />}
-        <Button onClick={handleToggleAddFriend}>{isAddingFriend ? "Close" : "Add Friend"}</Button>
+        <Button onClick={handleToggleAddFriend}>
+          {isAddingFriend ? "Close" : "Add Friend"}
+        </Button>
 
         {/* {isAddingFriend ? (
           <>
@@ -37,7 +48,7 @@ function App() {
           <Button onClick={handleToggleAddFriend}>Add Friend</Button>
         )} */}
       </div>
-      <FormSplitBill />
+      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
     </div>
   );
 }
