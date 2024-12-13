@@ -17,13 +17,22 @@ function App() {
 
   const handleToggleAddFriend = () => {
     setIsAddingFriend((prev) => !prev);
-    setSelectedFriend(null)
+    setSelectedFriend(null);
   };
   const handleSelectedFriend = (friend) => {
-    setSelectedFriend((curr) =>
-       curr?.id === friend.id ? null : friend
+    setSelectedFriend((curr) => (curr?.id === friend.id ? null : friend));
+    setIsAddingFriend(false);
+  };
+
+  const handleSplitBill = (value) => {
+    setFriends((currentFriends) =>
+      currentFriends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
     );
-    setIsAddingFriend(false)
+    // setSelectedFriend(null)
   };
 
   return (
@@ -48,7 +57,12 @@ function App() {
           <Button onClick={handleToggleAddFriend}>Add Friend</Button>
         )} */}
       </div>
-      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+        <FormSplitBill
+          selectedFriend={selectedFriend}
+          handleSplitBill={handleSplitBill}
+        />
+      )}
     </div>
   );
 }
