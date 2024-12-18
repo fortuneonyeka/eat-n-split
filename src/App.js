@@ -32,14 +32,14 @@ function App() {
           : friend
       )
     );
-    // setSelectedFriend(null)
+    setSelectedFriend(null)
   };
 
   return (
     <div className="app">
       <div className="sidebar">
         <FriendsList
-          friends={friends}
+          friends={friends} 
           handleSelectedFriend={handleSelectedFriend}
           selectedFriend={selectedFriend}
         />
@@ -50,7 +50,7 @@ function App() {
 
         {/* {isAddingFriend ? (
           <>
-            <FormAddFriend />
+            <FormAddFriend handleAddFriend={handleAddFriend} key={selectedFriend.id} />
             <Button onClick={handleToggleAddFriend}>Close</Button>
           </>
         ) : (
@@ -61,6 +61,7 @@ function App() {
         <FormSplitBill
           selectedFriend={selectedFriend}
           handleSplitBill={handleSplitBill}
+          key={selectedFriend.id}
         />
       )}
     </div>

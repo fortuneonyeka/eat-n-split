@@ -9,7 +9,6 @@ const FormSplitBill = ({selectedFriend, handleSplitBill}) => {
   const paidByFriend = bill? bill- paidByUser : ""
 
   
-
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!bill || Number(bill) <= 0) {
@@ -30,7 +29,7 @@ const FormSplitBill = ({selectedFriend, handleSplitBill}) => {
   }
   return (
     <form action="" className="form-split-bill" onSubmit={handleSubmit}>
-      <h2>Split bill with {selectedFriend.name}</h2>
+      <h2 >Split bill with {selectedFriend.name}</h2>
       <label htmlFor="">💰 Total Bill</label>
       <input type="number" value={bill} onChange={(e) => setBill(Number(e.target.value))}/>
 
